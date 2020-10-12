@@ -12,7 +12,7 @@ dataset = ['Date', 'Profit/Losses']
 for data in dataset:
 
     #setting up CSV
-    with open("C:\\Users\\ericl/Desktop/Course/python-challenge/PyBank/budget_data.csv") as csvFile:
+    with open("C:\\Users\\ericl/Desktop/Course/python-challenge/PyBank/Resources/budget_data.csv") as csvFile:
         #seperate by comma
         csvReader = csv.reader(csvFile, delimiter=',')
         #skip header
@@ -29,12 +29,6 @@ for data in dataset:
         minnet = net
         maxnet = net
         prevnet = net
-
-        #removing decimals
-        nettotal = int(nettotal)
-        avgnetchange = int(avgnetchange)
-        maxnet = int(maxnet)
-        minnet = int(minnet)
 
         #reading one line at a time
         for line in csvReader:
@@ -58,11 +52,29 @@ for data in dataset:
 
             prevnet = net
 
+            #removing decimals
+            nettotal = int(nettotal)
+            avgnetchange = int(avgnetchange)
+            maxnet = int(maxnet)
+            minnet = int(minnet)
+
         #print analysis in terminal
         print(f"Financial Analysis:")
         print("-------------------------------------------------------")
         print(f"Total Months: {totalmonths}")
-        print(f"Total Revenue: {nettotal} ")
-        print(f"Average Revenue Change: {avgnetchange}")
-        print(f"Greatest Increase in Revenue: {maxmonth} ({maxnet})")
-        print(f"Greatest Decrease in Revenue: {minmonth} ({minnet})")
+        print(f"Total: ${nettotal} ")
+        print(f"Average Change: ${avgnetchange}")
+        print(f"Greatest Increase in Profits: {maxmonth} (${maxnet})")
+        print(f"Greatest Decrease in Profits: {minmonth} (${minnet})")
+        
+        #print analysis in txt
+        newtxtCSV = "analysis.txt"
+        newtxt = open(newtxtCSV, mode = 'w')
+        newtxt.write(f"Financial Analysis:\n")
+        newtxt.write("-------------------------------------------------------\n")
+        newtxt.write(f"Total Months: {totalmonths}\n")
+        newtxt.write(f"Total: ${nettotal} \n")
+        newtxt.write(f"Average Change: ${avgnetchange} \n")
+        newtxt.write(f"Greatest Increase in Profits: {maxmonth} (${maxnet}) \n")
+        newtxt.write(f"Greatest Decrease in Profits: {minmonth} (${minnet}) \n")
+        newtxt.close()
