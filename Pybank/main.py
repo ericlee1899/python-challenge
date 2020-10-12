@@ -6,12 +6,12 @@ import csv
 totalmonths = 0
 nettotal = 0
 netaverage = 0
-dataset = ['Date', 'Profit/Losses']
+dataset = ["data"]
 
 #looping through dataset
 for data in dataset:
 
-    #setting up CSV
+    #setting up csv
     with open("C:\\Users\\ericl/Desktop/Course/python-challenge/PyBank/Resources/budget_data.csv") as csvFile:
         #seperate by comma
         csvReader = csv.reader(csvFile, delimiter=',')
