@@ -1,13 +1,19 @@
-#imports
 import os
 import csv
-import pandas as pd
 
-#declaring variables
+#create variables for calculations
 totalmonths = 0
 nettotal = 0
 netaverage = 0
+budget_data = ['Date', 'Profit/Losses']
 
-#declaring CSV
-dataset = pd.read_csv("PyBank/budget_data.csv")
-print(dataset.head())
+# Loop through files
+for files in budget_data:
+
+    # Open current CSV
+    with open("C:\\Users\\ericl/Desktop/Course/python-challenge/PyBank/budget_data.csv") as csvFile:
+
+        csvReader = csv.reader(csvFile, delimiter=',')
+
+        # Skip headers
+        next(csvReader, None)
