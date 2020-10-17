@@ -15,7 +15,6 @@ for data in dataset:
     with open("C:\\Users\\ericl/Desktop/Course/python-challenge/PyBank/Resources/budget_data.csv") as csvFile:
         #seperate by comma
         csvReader = csv.reader(csvFile, delimiter=',')
-        #skip header
         next(csvReader, None)
     
         #setting initial data
@@ -30,7 +29,7 @@ for data in dataset:
         maxnet = net
         prevnet = net
 
-        #reading one line at a time
+        #main loop
         for line in csvReader:
             #declaring equations
             net = float(line[1])
@@ -38,21 +37,18 @@ for data in dataset:
             nettotal = nettotal + net
             netchange = net - prevnet
             netaverage = netaverage + netchange
-            average_revenue = nettotal/totalmonths
             avgnetchange = netaverage/(totalmonths-1)
 
             #finding max/min changes
-            if netchange > maxnet:
-                maxmonth = line[0]
-                maxnet = netchange
-
             if netchange < minnet:
                 minmonth = line[0]
                 minnet = netchange
-
+            if netchange > maxnet:
+                maxmonth = line[0]
+                maxnet = netchange
             prevnet = net
 
-            #removing decimals
+            #changing to integers to remove decimals
             nettotal = int(nettotal)
             avgnetchange = int(avgnetchange)
             maxnet = int(maxnet)
