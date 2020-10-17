@@ -15,10 +15,9 @@ for data in dataset:
     with open("C:\\Users\\ericl/Desktop/Course/python-challenge/PyPoll/Resources/election_data.csv") as csvFile:
         #seperate by comma
         csvReader = csv.reader(csvFile, delimiter=',')
-        #skip header
         line = next(csvReader,None)
 
-        #reading one line at a time
+        #main loop
         for line in csvReader:
             #declaring equations
             totalvotes = totalvotes + 1
@@ -37,17 +36,17 @@ for data in dataset:
     maxvote = votecounter[0]
     winnercount = 0
 
-    #every candidate percentage
+    #candidate calculation
     for count in range(len(candidates)):
-        vote_percentage = votecounter[count]/totalvotes*100
-        percentages.append(vote_percentage)
+        votepercent = votecounter[count]/totalvotes*100
+        percentages.append(votepercent)
         if votecounter[count] > maxvote:
             maxvote = votecounter[count]
             print(maxvote)
             winnercount = count
     winner = candidates[winnercount]
 
-    #removing decimals
+    #rounding decimals
     percentages = [round(i,2) for i in percentages]
 
     #print analysis in terminal
